@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Break Down Objects in D3 with r2d3 — plotD3 • iBreakDown</title>
+<title>Plot Break Down Objects in D3 with r2d3 package. — plotD3 • iBreakDown</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -48,7 +48,7 @@
 	  <a class = "navbar-mi2logo" href="http://mi2.mini.pw.edu.pl/">
         <img src = "https://github.com/mi2-warsaw/MI2template/blob/master/inst/pkgdown/assets/MI2logo.jpg?raw=true" alt = "MI2" height = 46 title = "MI2">
 	  </a>
-      <a class="navbar-brand navbar-mi2" href="../index.html">Plot Break Down Objects in D3 with r2d3</a>
+      <a class="navbar-brand navbar-mi2" href="../index.html">Plot Break Down Objects in D3 with r2d3 package.</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="navbar-mi2 nav navbar-nav">
@@ -69,13 +69,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignette_breakDown2_classification.html">iBreakDown plots for classification models</a>
+      <a href="../articles/vignette_iBreakDown_classification.html">iBreakDown plots for classification models</a>
     </li>
     <li>
-      <a href="../articles/vignette_breakDown2_regression.html">iBreakDown plots for regression models</a>
+      <a href="../articles/vignette_iBreakDown_regression.html">iBreakDown plots for regression models</a>
     </li>
     <li>
-      <a href="../articles/vignette_breakDown2_titanic.html">iBreakDown plots for Titanic data</a>
+      <a href="../articles/vignette_iBreakDown_titanic.html">iBreakDown plots for Sinking of the RMS Titanic</a>
     </li>
   </ul>
 </li>
@@ -97,59 +97,63 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Break Down Objects in D3 with r2d3</h1>
+    <h1>Plot Break Down Objects in D3 with r2d3 package.</h1>
     </div>
 
     
-    <p>Plot Break Down Objects in D3 with r2d3</p>
+    <p>Plot Break Down Objects in D3 with r2d3 package.</p>
     
 
     <pre class="usage"><span class='fu'>plotD3</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for break_down</span>
-<span class='fu'>plotD3</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>max_features</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>min_max</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>vcolors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='kw'>`-1`</span> <span class='kw'>=</span> <span class='st'>"#a3142f"</span>, <span class='kw'>`0`</span> <span class='kw'>=</span> <span class='st'>"#a3142f"</span>, <span class='kw'>`1`</span> <span class='kw'>=</span> <span class='st'>"#0f6333"</span>, <span class='kw'>X</span> <span class='kw'>=</span>
-  <span class='st'>"#0f6333"</span>), <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>rounding_function</span> <span class='kw'>=</span> <span class='no'>round</span>)</pre>
+<span class='fu'>plotD3</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>baseline</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>max_features</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>min_max</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>vcolors</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='fu'>theme_drwhy_colors_break_down</span>(),
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>rounding_function</span> <span class='kw'>=</span> <span class='no'>round</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>the model model of 'break_down' class</p></td>
+      <td><p>the model model of `break_down`` class.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other parameters</p></td>
+      <td><p>other parameters.</p></td>
+    </tr>
+    <tr>
+      <th>baseline</th>
+      <td><p>if numeric then veritical line will start in baseline.</p></td>
     </tr>
     <tr>
       <th>max_features</th>
-      <td><p>default 4. Maximal number of features to be included in the plot</p></td>
+      <td><p>maximal number of features to be included in the plot. default value is 10.</p></td>
     </tr>
     <tr>
       <th>min_max</th>
-      <td><p>range of OX axis. By deafult `NA` therefore will be extracted from the contributions of `x`. But can be set to some constants, usefull if these plots are used for comparisons.</p></td>
+      <td><p>a range of OX axis. By deafult `NA` therefore will be extracted from the contributions of `x`. But can be set to some constants, usefull if these plots are used for comparisons.</p></td>
     </tr>
     <tr>
       <th>vcolors</th>
-      <td><p>named vector with colors</p></td>
+      <td><p>named vector with colors.</p></td>
     </tr>
     <tr>
       <th>digits</th>
       <td><p>number of decimal places (round) or significant digits (signif) to be used.
-See the <code>rounding_function</code> argument</p></td>
+See the <code>rounding_function</code> argument.</p></td>
     </tr>
     <tr>
       <th>rounding_function</th>
       <td><p>function that is to used for rounding numbers.
-It may be <code>signif()</code> which keeps a specified number of significant digits.
-Or the default <code>round()</code> to have the same precision for all components</p></td>
+It may be <code>signif</code> which keeps a specified number of significant digits.
+Or the default <code>round</code> to have the same precision for all components.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a r2d3 object</p>
+    <p>an `r2d3` object.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -176,32 +180,30 @@ Or the default <code>round()</code> to have the same precision for all component
 <span class='fu'>library</span>(<span class='st'>"iBreakDown"</span>)
 <span class='no'>rf_la</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='local_attributions.html'>local_attributions</a></span>(<span class='no'>rf_explain</span>, <span class='no'>titanic</span>[<span class='fl'>2</span>,])
 <span class='no'>rf_la</span></div><div class='output co'>#&gt;                  contribution
-#&gt; RF: intercept           0.363
-#&gt; RF: Sex = female        0.302
-#&gt; RF: Pclass = 1          0.181
-#&gt; RF: Fare = 71           0.101
-#&gt; RF: Embarked = C        0.015
-#&gt; RF: Age = 38            0.019
-#&gt; RF: SibSp = 1           0.008
-#&gt; RF: Parch = 0           0.006
+#&gt; RF: intercept           0.364
+#&gt; RF: Sex = female        0.296
+#&gt; RF: Fare = 71           0.069
+#&gt; RF: Pclass = 1          0.223
+#&gt; RF: Embarked = C        0.010
+#&gt; RF: Age = 38            0.014
+#&gt; RF: SibSp = 1           0.013
+#&gt; RF: Parch = 0           0.007
 #&gt; RF: Survived = 1        0.000
-#&gt; RF: prediction          0.996
-#&gt; baseline:  0 </div><div class='input'><span class='fu'>plotD3</span>(<span class='no'>rf_la</span>)
+#&gt; RF: prediction          0.996</div><div class='input'><span class='fu'>plotD3</span>(<span class='no'>rf_la</span>)
 
 <span class='no'>rf_la</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='local_attributions.html'>local_attributions</a></span>(<span class='no'>rf_explain</span>, <span class='no'>titanic</span>[<span class='fl'>3</span>,])
 <span class='no'>rf_la</span></div><div class='output co'>#&gt;                  contribution
-#&gt; RF: intercept           0.363
-#&gt; RF: Sex = female        0.302
-#&gt; RF: Pclass = 3         -0.220
-#&gt; RF: Fare = 7.9         -0.049
-#&gt; RF: SibSp = 0           0.035
-#&gt; RF: Embarked = S       -0.022
-#&gt; RF: Age = 26            0.137
-#&gt; RF: Parch = 0          -0.040
+#&gt; RF: intercept           0.364
+#&gt; RF: Sex = female        0.296
+#&gt; RF: Pclass = 3         -0.218
+#&gt; RF: Fare = 7.9         -0.064
+#&gt; RF: SibSp = 0           0.028
+#&gt; RF: Embarked = S       -0.029
+#&gt; RF: Age = 26            0.123
+#&gt; RF: Parch = 0          -0.030
 #&gt; RF: Survived = 1        0.000
-#&gt; RF: prediction          0.506
-#&gt; baseline:  0 </div><div class='input'><span class='fu'>plotD3</span>(<span class='no'>rf_la</span>, <span class='kw'>max_features</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='fu'>plotD3</span>(<span class='no'>rf_la</span>, <span class='kw'>max_features</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>min_max</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>,<span class='fl'>1</span>))</div></pre>
+#&gt; RF: prediction          0.470</div><div class='input'><span class='fu'>plotD3</span>(<span class='no'>rf_la</span>, <span class='kw'>max_features</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='fu'>plotD3</span>(<span class='no'>rf_la</span>, <span class='kw'>max_features</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>min_max</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>,<span class='fl'>1</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

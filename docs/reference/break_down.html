@@ -69,13 +69,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignette_breakDown2_classification.html">iBreakDown plots for classification models</a>
+      <a href="../articles/vignette_iBreakDown_classification.html">iBreakDown plots for classification models</a>
     </li>
     <li>
-      <a href="../articles/vignette_breakDown2_regression.html">iBreakDown plots for regression models</a>
+      <a href="../articles/vignette_iBreakDown_regression.html">iBreakDown plots for regression models</a>
     </li>
     <li>
-      <a href="../articles/vignette_breakDown2_titanic.html">iBreakDown plots for Titanic data</a>
+      <a href="../articles/vignette_iBreakDown_titanic.html">iBreakDown plots for Sinking of the RMS Titanic</a>
     </li>
   </ul>
 </li>
@@ -101,8 +101,8 @@
     </div>
 
     
-    <p>This function finds Variable Attributions via Sequential Variable Conditioning
-It calls either `local_attributions` or `local_interactions`.</p>
+    <p>This function finds Variable Attributions via Sequential Variable Conditioning.
+It calls either <code><a href='local_attributions.html'>local_attributions</a></code> or <code><a href='local_interactions.html'>local_interactions</a></code>.</p>
     
 
     <pre class="usage"><span class='fu'>break_down</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>interactions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
@@ -125,27 +125,27 @@ It calls either `local_attributions` or `local_interactions`.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>parameters passed to `local_*` functions</p></td>
+      <td><p>parameters passed to `local_*` functions.</p></td>
     </tr>
     <tr>
       <th>interactions</th>
-      <td><p>shall interactions be included</p></td>
+      <td><p>shall interactions be included?</p></td>
     </tr>
     <tr>
       <th>new_observation</th>
-      <td><p>a new observation with columns that corresponds to variables used in the model</p></td>
+      <td><p>a new observation with columns that correspond to variables used in the model.</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>validation dataset, will be extracted from `x` if it's an explainer</p></td>
+      <td><p>validation dataset, will be extracted from `x` if it is an explainer.</p></td>
     </tr>
     <tr>
       <th>predict_function</th>
-      <td><p>predict function, will be extracted from `x` if it's an explainer</p></td>
+      <td><p>predict function, will be extracted from `x` if it's an explainer.</p></td>
     </tr>
     <tr>
       <th>keep_distributions</th>
-      <td><p>if `TRUE`, then distributions of partial predictions is stored and can be plotted with the generic `plot()`</p></td>
+      <td><p>if `TRUE`, then distribution of partial predictions is stored and can be plotted with the generic `plot()`.</p></td>
     </tr>
     <tr>
       <th>order</th>
@@ -153,13 +153,17 @@ It calls either `local_attributions` or `local_interactions`.</p>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>name of the model. By default it's extracted from the 'class' attribute of the model</p></td>
+      <td><p>name of the model. By default it is extracted from the 'class' attribute of the model.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>an object of the `break_down` class</p>
+    <p>an object of the `break_down` class.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='local_attributions.html'>local_attributions</a></code>, <code><a href='local_interactions.html'>local_interactions</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -200,8 +204,7 @@ It calls either `local_attributions` or `local_interactions`.</p>
 #&gt; randomForest.promoted: salary = 2            0.001
 #&gt; randomForest.promoted: age = 58             -0.006
 #&gt; randomForest.promoted: gender = male         0.002
-#&gt; randomForest.promoted: prediction            0.004
-#&gt; baseline:  0 </div><div class='input'><span class='fu'>plot</span>(<span class='no'>bd_rf</span>)</div><div class='img'><img src='break_down-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; randomForest.promoted: prediction            0.004</div><div class='input'><span class='fu'>plot</span>(<span class='no'>bd_rf</span>)</div><div class='img'><img src='break_down-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -209,6 +212,8 @@ It calls either `local_attributions` or `local_interactions`.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

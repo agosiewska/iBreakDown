@@ -2,7 +2,8 @@
 #'
 #' @param x the model model of `break_down`` class.
 #' @param ... other parameters.
-#' @param max_features maximal number of features to be included in the plot. default value is 4.
+#' @param baseline if numeric then veritical line will start in baseline.
+#' @param max_features maximal number of features to be included in the plot. default value is 10.
 #' @param min_max a range of OX axis. By deafult `NA` therefore will be extracted from the contributions of `x`. But can be set to some constants, usefull if these plots are used for comparisons.
 #' @param vcolors named vector with colors.
 #' @param digits number of decimal places (round) or significant digits (signif) to be used.
@@ -42,8 +43,8 @@
 #'
 #' rf_la <- local_attributions(rf_explain, titanic[3,])
 #' rf_la
-#' plotD3(rf_la, max_features = 10)
-#' plotD3(rf_la, max_features = 10, min_max = c(0,1))
+#' plotD3(rf_la, max_features = 4)
+#' plotD3(rf_la, max_features = 4, min_max = c(0,1))
 #' }
 #' @export
 #' @rdname plotD3
@@ -53,39 +54,25 @@ plotD3 <- function(x, ...)
 #' @export
 #' @rdname plotD3
 plotD3.break_down <- function(x, ...,
-                        max_features = 4,
+                        baseline = NA,
+                        max_features = 10,
                         min_max = NA,
-                        vcolors = c("-1" = "#a3142f", "0" = "#a3142f", "1" = "#0f6333", "X" = "#0f6333"),
+                        vcolors = DALEX::theme_drwhy_colors_break_down(),
                         digits = 3, rounding_function = round) {
-  class(x) = "data.frame"
 
   # remove first and last row
-  model_baseline <- rounding_function(x$contribution[1], digits)
   model_prediction <- rounding_function(x$contribution[nrow(x)], digits)
-  x <- x[-c(1,nrow(x)),]
-
-  if (nrow(x) > max_features) {
-    last_row <- max_features + 1
-    new_x <- x[1:last_row,]
-    new_x$variable <- as.character(new_x$variable)
-    new_x$variable[last_row] = "  all other factors"
-    new_x$contribution[last_row] = sum(x$contribution[last_row:nrow(x)])
-    new_x$cummulative[last_row] = x$cummulative[nrow(x)]
-    new_x$sign[last_row] = ifelse(new_x$contribution[last_row] > 0,
-                                  "1","-1")
-    x <- new_x
-  }
-
-  # add colors
-  x$sign <- vcolors[x$sign]
+  model_baseline <- rounding_function(ifelse(is.na(baseline), x$contribution[1], baseline), digits)
+  x <- prepare_data_for_break_down_plot3D(x, vcolors, max_features)
 
   # convert to list
+  # will be easier to pass to D3 plot
   x_as_list <- lapply(1:nrow(x), function(i) {
     list(variable = as.character(x$variable[i]),
          contribution = x$contribution[i],
          cummulative = x$cummulative[i],
          sign = as.character(x$sign[i]),
-         label = paste0(substr(x$variable[i], 3, 100),
+         label = paste0(substr(x$variable[i], 1, 100),
                         "<br>", ifelse(x$contribution[i] > 0, "increases", "decreases"),
                         " average response <br>by ",
                         rounding_function(abs(x$contribution[i]), digits))
@@ -108,3 +95,24 @@ plotD3.break_down <- function(x, ...,
     d3_version = "4"
   )
 }
+
+prepare_data_for_break_down_plot3D <- function(x, vcolors, max_features = 10) {
+  x <- x[-c(1,nrow(x)),]
+
+  if (nrow(x) > max_features) {
+    last_row <- max_features + 1
+    new_x <- x[1:last_row,]
+    new_x$variable <- as.character(new_x$variable)
+    new_x$variable[last_row] = "  + all other factors"
+    new_x$contribution[last_row] = sum(x$contribution[last_row:nrow(x)])
+    new_x$cummulative[last_row] = x$cummulative[nrow(x)]
+    new_x$sign[last_row] = ifelse(new_x$contribution[last_row] > 0,
+                                  "1","-1")
+    x <- new_x
+  }
+
+  # add colors
+  x$sign <- vcolors[x$sign]
+  x
+}
+
